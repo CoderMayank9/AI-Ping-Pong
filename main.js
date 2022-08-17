@@ -20,7 +20,7 @@ var ball = {
     dx:3,
     dy:3
 }
-
+gamestatus="";
 function setup(){
   var canvas =  createCanvas(700,600);
   canvas.parent('canvas');
@@ -28,14 +28,20 @@ function setup(){
 	video.size(700,600);
 	video.hide();
 	poseNet=ml5.poseNet(video,modelloaded);
-	poseNet.on('pose',gotresults);
 }
 function modelloaded()
 {
 console.log("Model Is Loaded");
 }
-
+function startgame()
+{
+gamestatus="start";
+document.getElementById("status").innerHTML="Game Is Loaded";
+}
 function draw(){
+if(gamestatus=="start")
+{
+
 image(video,0,0,700,600);
  background(0); 
 
@@ -75,7 +81,7 @@ image(video,0,0,700,600);
    //function move call which in very important
     move();
 }
-
+}
 
 
 //function reset when ball does notcame in the contact of padde
